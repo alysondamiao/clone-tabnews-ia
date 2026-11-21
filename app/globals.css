@@ -1,0 +1,214 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-pink: #ff5277;
+  --deep-red: #8a0328;
+  --glow-color: rgba(255, 75, 114, 0.5);
+  --text-light: #fff5f8;
+  --accent-gold: #fce7b0;
+}
+
+body {
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  background: radial-gradient(circle at 50% 30%, #300c22 0%, #1a0413 55%, #0d010a 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text-light);
+  user-select: none;
+  position: relative;
+}
+
+/* Partículas e corações de fundo */
+.hearts-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.floating-particle {
+  position: absolute;
+  bottom: -30px;
+  animation: floatUp linear infinite;
+  color: rgba(255, 140, 170, 0.6);
+  filter: drop-shadow(0 0 6px rgba(255, 105, 180, 0.4));
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.8) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--particle-opacity, 0.6);
+  }
+  90% {
+    opacity: var(--particle-opacity, 0.6);
+  }
+  100% {
+    transform: translateY(-115vh) scale(1) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+/* Efeito ao clicar na tela */
+.click-particle {
+  position: fixed;
+  pointer-events: none;
+  font-size: 24px;
+  transform: translate(-50%, -50%);
+  animation: clickFade 0.8s ease-out forwards;
+  z-index: 999;
+}
+
+@keyframes clickFade {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(-50%, -90%) scale(1.4);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -130%) scale(1.8);
+  }
+}
+
+/* Container principal */
+.page-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.content-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Estrutura do Coração com os nomes */
+.heart-wrapper {
+  position: relative;
+  width: min(86vw, 440px);
+  height: min(86vw, 440px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: gentlePulse 2.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 35px var(--glow-color));
+}
+
+.heart-svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: visible;
+}
+
+/* Nomes no centro do coração */
+.couple-names-container {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 82%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 3;
+}
+
+.first-name,
+.second-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.4rem, 8vw, 3.8rem);
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.15;
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(255, 255, 255, 0.6),
+    0 0 35px rgba(255, 140, 180, 0.5);
+  letter-spacing: 1px;
+}
+
+.ampersand {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  color: var(--accent-gold);
+  line-height: 0.9;
+  margin: 2px 0;
+  opacity: 0.95;
+  text-shadow: 0 0 12px rgba(252, 231, 176, 0.7);
+}
+
+.tagline {
+  margin-top: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.65rem, 2vw, 0.78rem);
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255, 235, 242, 0.9);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Frase romântica abaixo do coração */
+.romantic-quote {
+  margin-top: 40px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 3.2vw, 1.25rem);
+  color: #f7d2e1;
+  max-width: 480px;
+  line-height: 1.6;
+  opacity: 0.95;
+  text-shadow: 0 0 15px rgba(255, 182, 193, 0.3);
+  padding: 0 15px;
+}
+
+/* Animação suave de batimento cardíaco */
+@keyframes gentlePulse {
+  0% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.05);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.06);
+  }
+  70% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
